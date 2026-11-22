@@ -1,1 +1,99 @@
-
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITI Students Zone</title>
+<style>
+:root{--navy:#071b42;--blue:#1459c7;--yellow:#ffd21f;--bg:#f3f6fb;--card:#fff;--ink:#132544;--muted:#61718c;--green:#16804a;--red:#c62828}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}header{background:var(--navy);color:white;padding:16px 14px;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0002}header .top{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.brand{font-size:21px;font-weight:800}.brand span{color:var(--yellow)}button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff}.btn-yellow{background:var(--yellow);color:var(--navy)}.btn-light{background:#e9effb;color:var(--navy)}nav{max-width:1050px;margin:10px auto 0;display:flex;gap:8px;overflow:auto;padding-bottom:3px}nav a{color:white;text-decoration:none;background:#ffffff1a;padding:8px 12px;border-radius:20px;white-space:nowrap;font-size:14px}.wrap{max-width:1050px;margin:auto;padding:15px}.hero{background:linear-gradient(135deg,var(--navy),#1459c7);color:white;border-radius:18px;padding:22px 18px;margin-bottom:14px}.hero h1{margin:0 0 8px;font-size:26px}.hero p{margin:5px 0;color:#e4edff}.clock{font-weight:800;color:var(--yellow);font-size:18px;margin-top:10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.card{background:var(--card);border-radius:15px;padding:16px;box-shadow:0 3px 12px #0c255011;margin-bottom:12px}.card h2,.card h3{margin:0 0 10px}.muted{color:var(--muted);font-size:14px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}select,input{width:100%;padding:11px;border:1px solid #d4deee;border-radius:10px;margin:6px 0;font-size:16px;background:white;color:var(--ink)}.trade-btn{background:#eaf1ff;color:var(--navy);margin:4px 3px 4px 0}.unit-btn{background:#f1f5fb;color:var(--navy);margin:5px 4px 0 0}.hidden{display:none!important}.question{padding:12px;border:1px solid #e1e9f4;border-radius:12px;margin:10px 0}.question p{font-weight:700;margin:0 0 7px}.question label{display:block;padding:7px 4px}.status{padding:10px;border-radius:10px;background:#eef4ff;margin:8px 0}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;align-items:center;justify-content:center;padding:15px}.modalbox{background:white;width:min(450px,100%);padding:18px;border-radius:16px;max-height:90vh;overflow:auto}.close{float:right;background:#eee;color:#333;padding:6px 10px}footer{text-align:center;padding:22px;color:var(--muted)}.small{font-size:13px}.correct{color:var(--green)}.wrong{color:var(--red)}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">ITI <span>Students Zone</span></div><div class="row"><button class="btn-yellow" onclick="openAuth('login')">Login</button><button class="btn-light" onclick="openAuth('signup')">Register</button></div></div>
+<nav><a href="#home">Home</a><a href="#attendance">Attendance</a><a href="#trades">Trade Theory</a><a href="#test">Online Test</a><a href="#updates">Updates</a><a href="#batch">Batch</a></nav></header>
+<main class="wrap">
+<section class="hero" id="home"><h1>ITI Students Zone</h1><p>ITI students ke liye notes, unit-wise trade theory, practice test aur batch updates.</p><div class="clock" id="clock">--</div><p class="small">Mobile-friendly study portal</p></section>
+<section class="card" id="attendance"><h2>📅 Kal Main Aa Raha Hu</h2><p class="muted">Kal class aane ka status submit karein. Login zaroori hai.</p><select id="attendanceBatch"><option value="Morning">Morning Batch</option><option value="Afternoon">Afternoon Batch</option><option value="Evening">Evening Batch</option></select><div class="row"><button onclick="setAttendance('yes')">Haan, aa raha hu</button><button class="btn-light" onclick="setAttendance('no')">Nahi aa raha</button></div><div id="attendanceInfo" class="status">Attendance info yahan dikhegi.</div><div id="attendanceList" class="muted"></div></section>
+<section class="card" id="trades"><h2>📚 Trade Theory – Unit Wise</h2><p class="muted">Trade select karke unit-wise topics dekhein.</p><div class="grid"><div><h3>Diesel Mechanic</h3><button class="trade-btn" onclick="showUnits('Diesel Mechanic')">Units dekhein</button></div><div><h3>Electrician</h3><button class="trade-btn" onclick="showUnits('Electrician')">Units dekhein</button></div><div><h3>Fitter</h3><button class="trade-btn" onclick="showUnits('Fitter')">Units dekhein</button></div><div><h3>COPA</h3><button class="trade-btn" onclick="showUnits('COPA')">Units dekhein</button></div><div><h3>Welder</h3><button class="trade-btn" onclick="showUnits('Welder')">Units dekhein</button></div><div><h3>Turner</h3><button class="trade-btn" onclick="showUnits('Turner')">Units dekhein</button></div></div><div id="unitArea" class="status hidden"></div></section>
+<section class="card" id="test"><h2>📝 Online Test – Workshop Safety (50 MCQ)</h2><p class="muted">Practice quiz, 50 questions. 30-minute timer. Submit karne par score aur answer review dikhega.</p><div class="row"><button onclick="startQuiz()">Test Start / Restart</button><strong id="timer"></strong></div><div id="quizArea"></div><div id="quizResult"></div></section>
+<section class="card" id="updates"><h2>📢 Updates</h2><p>New notes, tests, batch notices yahan add kiye ja sakte hain.</p></section><section class="card" id="batch"><h2>👥 Batch</h2><p>Morning, Afternoon aur Evening batch options attendance me available hain.</p></section>
+</main><footer>ITI Students Zone · Study & Practice</footer>
+<div class="modal" id="authModal"><div class="modalbox"><button class="close" onclick="closeAuth()">×</button><h2 id="authTitle">Login</h2><input id="authName" placeholder="Student Name (register ke liye)"><input id="authEmail" type="email" placeholder="Email"><input id="authPassword" type="password" placeholder="Password (6+ characters)"><select id="authTrade"><option>Diesel Mechanic</option><option>Electrician</option><option>Fitter</option><option>COPA</option><option>Welder</option><option>Turner</option></select><button onclick="authAction()" id="authButton">Login</button><p id="authMsg" class="muted"></p></div></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection, query, where } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyAt9RCcgn0Cpl9QGhnp9Of_dtPGv2_66bo",authDomain:"iti-students-zone.firebaseapp.com",projectId:"iti-students-zone",storageBucket:"iti-students-zone.firebasestorage.app",messagingSenderId:"623264005121",appId:"1:623264005121:web:b374576b540a973ffd9400"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);let currentUser=null,authMode="login";
+function updateClock(){const d=new Date();document.getElementById('clock').textContent=d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'full',timeStyle:'medium'});}updateClock();setInterval(updateClock,1000);
+window.openAuth=(mode)=>{authMode=mode;document.getElementById('authTitle').textContent=mode==='signup'?'Create Account':'Login';document.getElementById('authButton').textContent=mode==='signup'?'Register':'Login';document.getElementById('authModal').style.display='flex';document.getElementById('authMsg').textContent='';};window.closeAuth=()=>document.getElementById('authModal').style.display='none';
+window.authAction=async()=>{const email=document.getElementById('authEmail').value.trim(),pass=document.getElementById('authPassword').value,name=document.getElementById('authName').value.trim(),trade=document.getElementById('authTrade').value,msg=document.getElementById('authMsg');if(!email||!pass){msg.textContent='Email aur password bharein.';return;}try{if(authMode==='signup'){if(!name){msg.textContent='Register ke liye naam bharein.';return;}const cred=await createUserWithEmailAndPassword(auth,email,pass);await setDoc(doc(db,'students',cred.user.uid),{name,email,trade,createdAt:new Date().toISOString()});msg.textContent='Account ban gaya!';}else{await signInWithEmailAndPassword(auth,email,pass);msg.textContent='Login successful!';}setTimeout(closeAuth,800);}catch(e){msg.textContent=e.message;}};
+onAuthStateChanged(auth,user=>{currentUser=user;});
+const tomorrowKey=()=>{const d=new Date();d.setDate(d.getDate()+1);return d.toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});};
+window.setAttendance=async(status)=>{const info=document.getElementById('attendanceInfo');if(!currentUser){info.textContent='Pehle Login karein.';openAuth('login');return;}const batch=document.getElementById('attendanceBatch').value,key=tomorrowKey();try{await setDoc(doc(db,'attendance',key+'_'+currentUser.uid),{uid:currentUser.uid,email:currentUser.email,status,batch,date:key,updatedAt:new Date().toISOString()},{merge:true});info.textContent='Attendance submit ho gayi: '+(status==='yes'?'Kal aa rahe hain':'Kal nahi aa rahe')+' · '+batch;}catch(e){info.textContent='Submit error: '+e.message;}};
+const attendanceRef=collection(db,'attendance');onSnapshot(query(attendanceRef,where('date','==',tomorrowKey())),snap=>{const rows=[];snap.forEach(x=>{const a=x.data();rows.push((a.status==='yes'?'✅':'❌')+' '+(a.batch||'Batch')+' · '+(a.status==='yes'?'Coming':'Not coming'));});document.getElementById('attendanceList').textContent=rows.length?rows.join(' | '):'Abhi kisi ne attendance submit nahi ki.';},err=>{document.getElementById('attendanceList').textContent='Attendance list rules check karein.';});
+const unitTopics={'Diesel Mechanic':['Safety & First Aid','Tools and Measuring Instruments','Workshop Practice','Basic Engineering Drawing','Material & Fasteners','Engine Fundamentals','Diesel Engine Basics'],'Electrician':['Safety & First Aid','Tools','Basic Electricity','Wires & Cables','Electrical Measuring Instruments','DC Circuits','AC Fundamentals'],'Fitter':['Safety & First Aid','Tools','Marking & Measuring','Fitting Operations','Fasteners','Drilling','Basic Engineering Drawing'],'COPA':['Computer Fundamentals','Operating System','Word Processing','Spreadsheet','Presentation','Internet & Email','Programming Basics'],'Welder':['Safety & First Aid','Welding Tools','Welding Fundamentals','Gas Welding','Arc Welding','Electrodes','Weld Defects'],'Turner':['Safety & First Aid','Lathe Tools','Lathe Fundamentals','Turning Operations','Measuring Instruments','Thread Cutting','Workholding']};
+window.showUnits=trade=>{const area=document.getElementById('unitArea');area.classList.remove('hidden');area.innerHTML='<h3>'+trade+' · Trade Theory Units (overview)</h3>'+unitTopics[trade].map((u,i)=>'<button class="unit-btn" onclick="showUnitInfo(\''+trade+'\','+(i+1)+')">Unit '+(i+1)+': '+u+'</button>').join('')+'<p id="unitInfo" class="muted">Unit par tap karein.</p>';area.scrollIntoView({behavior:'smooth',block:'nearest'});};window.showUnitInfo=(trade,n)=>{const el=document.getElementById('unitInfo');if(el)el.textContent=trade+' – Unit '+n+': topic overview. Detailed notes/MCQ content is being added unit-wise.';};
+</script>
+<script>
+const questions=[
+['Workshop me PPE ka full form kya hai?',['Personal Protective Equipment','Public Power Engine','Proper Practice Exercise','Personal Power Equipment'],0],
+['Aag lagne par sabse pehle kya karein?',['Alarm raise karein aur safe evacuation','Chhup jayein','Lift use karein','Pani har aag par daalein'],0],
+['Electrical fire me kaunsa extinguisher suitable hota hai?',['CO2 extinguisher','Water jet','Wet cloth','Petrol'],0],
+['Workshop me loose kapde kyon nahi pehne?',['Machine me fasne ka khatra','Thand lagti hai','Dhool kam hoti hai','Awaz badhti hai'],0],
+['First aid ka primary purpose kya hai?',['Turant sahayata aur sthiti ko bigadne se rokna','Operation karna','Medicine bechna','Patient ko akela chhodna'],0],
+['Eye protection ke liye kya use hota hai?',['Safety goggles','Cotton cap','Apron only','Ear plug'],0],
+['Machine saaf karne se pehle kya karna chahiye?',['Machine ko stop/isolate karna','Speed badhana','Oil dalte rehna','Running me brush lagana'],0],
+['Floor par oil gir jaye to?',['Turant clean aur warning lagana','Ignore karna','Uske upar cardboard rakhna','Machine chalana'],0],
+['Emergency exit ka use kab karein?',['Emergency evacuation me','Storage ke liye','Smoking ke liye','Tools rakhne ke liye'],0],
+['Electrical shock victim ko touch karne se pehle?',['Power supply disconnect karein','Seedha pakdein','Pani daalein','Metal rod use karein'],0],
+['Fire triangle me kya hota hai?',['Heat, fuel, oxygen','Water, air, sand','Smoke, dust, oil','Light, sound, heat'],0],
+['First aid box kahan hona chahiye?',['Accessible aur marked location par','Locked inaccessible room','Machine ke niche','Office ke bahar'],0],
+['Workshop me safety sign ka kya kaam?',['Hazard aur instruction batana','Decoration','Attendance','Tool ka price batana'],0],
+['Grinding ke samay kya zaroori hai?',['Eye/face protection','Loose gloves near rotating wheel','Wheel ko side se hit karna','Bina guard chalana'],0],
+['Heavy object uthate samay?',['Back straight, knees bend','Waist se jhatka','Twist karke uthana','Ek haath se kheenchna'],0],
+['Compressed air ko body par use karna?',['Unsafe, avoid karein','Safe cleaning method','Only face par','Only ears me'],0],
+['Noise protection ke liye?',['Ear plugs/ear muffs','Safety shoes','Face shield only','Cotton shirt'],0],
+['Chemical container par kya hona chahiye?',['Label aur hazard information','Blank label','Only color','No lid'],0],
+['Workshop me smoking?',['Nirdharit safe area ke alawa mana','Har jagah allowed','Machine ke paas allowed','Oil storage me allowed'],0],
+['Safety shoes kis se bachate hain?',['Foot injury aur falling objects','Eye dust','Noise','Electric light'],0],
+['Hand tool damaged ho to?',['Use na karein, report/replace','Tape se chala dein','Dusre ko de dein','Ignore karein'],0],
+['Machine guard ka purpose?',['Moving parts se protection','Machine decorate','Speed double','Noise create'],0],
+['Tool use ke baad?',['Safai karke proper jagah rakhein','Floor par chhod dein','Oil me dubo dein','Pocket me loose rakhein'],0],
+['Emergency number/first aid knowledge?',['Har worker ko pata hona chahiye','Sirf supervisor ko','Kisi ko nahi','Optional nahi zaroori'],0],
+['Fire extinguisher use karte waqt PASS me P?',['Pull pin','Push hose','Press handle','Pause'],0],
+['Wet hands se electrical switch operate karna?',['Avoid karein','Safe hai','Rubber shoes ke bina karein','Metal tool se karein'],0],
+['Work area lighting?',['Adequate honi chahiye','Hamesha dim','Off rakhein','Sirf emergency me'],0],
+['Spilled chemical ko clean karte waqt?',['SDS/instructions aur proper PPE follow karein','Bare hands','Smell karke identify','Drain me daal dein'],0],
+['Ladder use karte waqt?',['Stable surface aur 3-point contact','Top rung par khade ho','Loose ground','Side se lean karein'],0],
+['Safety training ka fayda?',['Accident risk kam hota hai','Production rukta hai','Tools kharab hote hain','Waste badhta hai'],0],
+['Workshop waste?',['Proper category/bin me dispose','Machine ke paas jama','Drain me','Open fire me'],0],
+['Oil/grease ke contact ke baad?',['Hands clean karein','Food khayein','Face rub karein','Ignore karein'],0],
+['First aid me severe bleeding?',['Clean dressing se pressure aur help bulayein','Patient ko daudayein','Wound ko dirty karein','Delay karein'],0],
+['Machine par maintenance se pehle?',['Lockout/tagout ya isolate','Machine running','Only warning shout','Speed low karna'],0],
+['Safe lifting team lift kab?',['Load heavy/awkward ho','Har chhoti cheez','No need planning','Twist karte hue'],0],
+['Safety helmet protects?',['Head from impact','Hands','Feet','Hearing'],0],
+['Warning sign yellow often indicates?',['Caution/warning','First aid only','Exit only','No danger'],0],
+['Tool ka correct size kyon?',['Fastener damage aur injury risk kam','Tool ko heavy','Noise increase','Time waste'],0],
+['Gas cylinder ko?',['Secure upright, suitable storage','Horizontal loose','Near flame','Valve open store'],0],
+['Workshop me horseplay?',['Unsafe, avoid','Encouraged','Machine ke paas ok','Only during test'],0],
+['Safety inspection ka purpose?',['Hazard pehle identify karna','Decoration check','Attendance','Break time'],0],
+['Protective gloves rotating machine ke paas?',['Entanglement risk, procedure follow karein','Always safest','Loose gloves use karein','No machine guard needed'],0],
+['Evacuation ke baad?',['Assembly point par report karein','Wapas andar jayein','Road par bhagein','Hide karein'],0],
+['Hazard report kis ko?',['Supervisor/authorized person','Visitors','Social media only','Kisi ko nahi'],0],
+['Portable electrical tool inspect?',['Cable, plug, casing before use','Only color','Only weight','Never check'],0],
+['Sawdust/metal chips remove?',['Suitable brush/tool; hands nahi','Bare hands','Compressed air body par','Running machine se'],0],
+['Safe work procedure follow kyon?',['Consistent safe method','Speed only','Rule avoid','Machine test skip'],0],
+['Near miss report?',['Report karein taaki future accident roke','Chhupayein','Ignore','Mazak samjhein'],0],
+['Workshop me drinking water?',['Clean designated area','Machine bench par','Chemical store me','Tool tray me'],0],
+['Accident hone par?',['Area safe, help/first aid, report','Photo hi lein','Victim ko akela','Machine restart'],0],
+['Safety ka responsibility?',['Sabhi workers ki','Sirf manager','Sirf instructor','Visitors only'],0]
+];
+let quizTimer=null,quizSeconds=1800,quizActive=false,quizOrder=[],quizOptions=[];
+function startQuiz(){clearInterval(quizTimer);quizSeconds=1800;quizActive=true;quizOrder=questions.map((q,i)=>i);document.getElementById('quizResult').innerHTML='';renderQuiz();tickQuiz();quizTimer=setInterval(tickQuiz,1000);}
+function tickQuiz(){if(!quizActive)return;const m=Math.floor(quizSeconds/60),s=quizSeconds%60;document.getElementById('timer').textContent=`Time: ${m}:${String(s).padStart(2,'0')}`;if(quizSeconds<=0){submitQuiz();return;}quizSeconds--;}
+function renderQuiz(){const area=document.getElementById('quizArea');quizOptions=questions.map(q=>{const pairs=q[1].map((text,index)=>({text,index}));for(let k=pairs.length-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[pairs[k],pairs[r]]=[pairs[r],pairs[k]];}return pairs;});area.innerHTML=questions.map((q,i)=>`<div class="question"><p>${i+1}. ${q[0]}</p>${quizOptions[i].map((op,j)=>`<label><input type="radio" name="q${i}" value="${j}" style="width:auto;margin:0 8px 0 0">${op.text}</label>`).join('')}</div>`).join('')+`<button onclick="submitQuiz()">Submit Test</button>`;}
+function submitQuiz(){if(!quizActive)return;quizActive=false;clearInterval(quizTimer);let score=0,attempted=0,review='';questions.forEach((q,i)=>{const sel=document.querySelector(`input[name="q${i}"]:checked`);if(sel)attempted++;const chosen=sel?quizOptions[i][Number(sel.value)].index:-1;if(sel&&chosen===q[2])score++;review+=`<div class="question"><b>${i+1}. ${q[0]}</b><br>Your answer: ${sel?quizOptions[i][Number(sel.value)].text:'Not answered'}<br><span class="correct">Correct: ${q[1][q[2]]}</span></div>`;});document.getElementById('quizResult').innerHTML=`<div class="status"><h3>Result: ${score} / ${questions.length}</h3>Attempted: ${attempted} · Wrong/Unanswered: ${questions.length-score}<p>${Math.round(score/questions.length*100)}%</p></div><h3>Answer Review</h3>${review}`;document.getElementById('timer').textContent='Test submitted';}
+window.startQuiz=startQuiz;window.submitQuiz=submitQuiz;
+</script>
+</body></html>
