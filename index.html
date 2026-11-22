@@ -109,6 +109,44 @@ window.setAttendance=async function(choice){
  try{await setDoc(doc(db,'attendance',currentUser.uid),{uid:currentUser.uid,choice,batch,date,updatedAt:new Date().toISOString()});document.getElementById('attendanceCount').textContent='आपका जवाब लाइव सेव हो गया!';}
  catch(e){alert('Attendance save error: '+e.message);}
 };
+  window.openTradeDetails = function(tradeName) {
+  let box = document.getElementById("tradeDetails");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "tradeDetails";
+    box.className = "panel";
+    document.getElementById("trades").after(box);
+  }
+
+  box.innerHTML = `
+    <h2 class="section-title">📚 ${tradeName}</h2>
+
+    <div class="list">
+      <button onclick="alert('${tradeName} Trade Theory Notes जल्द जोड़े जाएंगे')">
+        📖 Study Notes
+      </button>
+
+      <button onclick="alert('${tradeName} के 50 MCQ जल्द जोड़े जाएंगे')">
+        📝 Online MCQ Test
+      </button>
+
+      <button onclick="alert('${tradeName} का Syllabus जल्द जोड़ा जाएगा')">
+        📚 Syllabus
+      </button>
+
+      <button onclick="alert('Jobs और Apprenticeship जल्द जोड़े जाएंगे')">
+        💼 Jobs
+      </button>
+    </div>
+
+    <button onclick="document.getElementById('tradeDetails').remove()">
+      ⬅ वापस
+    </button>
+  `;
+
+  box.scrollIntoView({behavior: "smooth"});
+};
 </script> browser में save हुई।');closeModal();}
 </script>
 </body>
