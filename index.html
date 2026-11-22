@@ -143,7 +143,13 @@ window.setAttendance=async function(choice){
     <button onclick="document.getElementById('tradeDetails').remove()">
       ⬅ वापस
     </button>
-  `;
+  `;  `;
+  box.scrollIntoView({ behavior: "smooth" });
+};
+
+window.trade = function(name) {
+  window.openTradeDetails(name);
+};
 
   box.scrollIntoView({behavior: "smooth"});
 };
