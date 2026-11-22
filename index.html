@@ -108,8 +108,7 @@ window.setAttendance=async function(choice){
  const batch=document.getElementById('batchChoice').value, date=tomorrowKey();
  try{await setDoc(doc(db,'attendance',currentUser.uid),{uid:currentUser.uid,choice,batch,date,updatedAt:new Date().toISOString()});document.getElementById('attendanceCount').textContent='आपका जवाब लाइव सेव हो गया!';}
  catch(e){alert('Attendance save error: '+e.message);}
-};
-  window.openTradeDetails = function(tradeName) {
+};window.openTradeDetails = function(tradeName) {
   let box = document.getElementById("tradeDetails");
 
   if (!box) {
@@ -121,38 +120,25 @@ window.setAttendance=async function(choice){
 
   box.innerHTML = `
     <h2 class="section-title">📚 ${tradeName}</h2>
-
     <div class="list">
-      <button onclick="alert('${tradeName} Trade Theory Notes जल्द जोड़े जाएंगे')">
-        📖 Study Notes
-      </button>
-
-      <button onclick="alert('${tradeName} के 50 MCQ जल्द जोड़े जाएंगे')">
-        📝 Online MCQ Test
-      </button>
-
-      <button onclick="alert('${tradeName} का Syllabus जल्द जोड़ा जाएगा')">
-        📚 Syllabus
-      </button>
-
-      <button onclick="alert('Jobs और Apprenticeship जल्द जोड़े जाएंगे')">
-        💼 Jobs
-      </button>
+      <button onclick="alert('Trade Theory Notes जल्द जोड़े जाएंगे')">📖 Study Notes</button>
+      <button onclick="alert('50 MCQ Test जल्द जोड़ा जाएगा')">📝 Online MCQ Test</button>
+      <button onclick="alert('Syllabus जल्द जोड़ा जाएगा')">📚 Syllabus</button>
+      <button onclick="alert('Jobs और Apprenticeship जल्द जोड़े जाएंगे')">💼 Jobs</button>
     </div>
+    <button onclick="document.getElementById('tradeDetails').remove()">⬅ वापस</button>
+  `;
 
-    <button onclick="document.getElementById('tradeDetails').remove()">
-      ⬅ वापस
-    </button>
-    `;
-  box.scrollIntoView({ behavior: "smooth" });
+  box.scrollIntoView({behavior: "smooth"});
 };
 
 window.trade = function(name) {
   window.openTradeDetails(name);
 };
-
-  box.scrollIntoView({behavior: "smooth"});
-};
+</script>
+</body>
+</html>
+  
 </script> browser में save हुई।');closeModal();}
 </script>
 </body>
