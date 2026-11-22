@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITI Students Zone</title>
+<style>
+:root{--navy:#071b42;--blue:#1459c7;--yellow:#ffd21f;--bg:#f3f6fb;--card:#fff;--ink:#132544;--muted:#61718c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;font-size:1.35rem;letter-spacing:.2px}.brand span{color:var(--yellow)}.topline{font-size:.86rem;color:#c9d8f5}
+nav{background:#0c2b62;color:white;padding:12px 5%;display:flex;gap:18px;overflow:auto;white-space:nowrap}nav a{color:white;text-decoration:none;font-weight:650}
+main{max-width:1200px;margin:auto;padding:18px}
+.hero{display:grid;grid-template-columns:1.4fr .9fr;gap:16px}
+.panel{background:var(--card);border-radius:18px;box-shadow:0 5px 18px #102a5010;border:1px solid #e1e9f5;padding:20px}
+.hero-left{background:linear-gradient(125deg,#071b42,#1756b6);color:white;min-height:260px;display:flex;flex-direction:column;justify-content:center}
+h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.05;margin:0 0 10px}h1 span{color:var(--yellow)}
+.hero-left p{color:#e5edff;font-size:1.08rem}.cta{display:inline-block;background:var(--yellow);color:#111;padding:11px 18px;border-radius:25px;text-decoration:none;font-weight:800;border:0;cursor:pointer;margin-top:8px}
+.clock{background:#061a3c;color:white;text-align:center;border:1px solid #3983ed}.live{color:#5cff8b;font-weight:900}.date{font-size:1.05rem;color:#c5d8fa;margin-top:8px}.time{font-size:clamp(1.9rem,5vw,3rem);font-weight:900;color:var(--yellow);letter-spacing:1px}
+.attendance h2{margin:0 0 5px;font-size:1.3rem}.attendance .sub{color:var(--muted);margin-bottom:12px}.buttons{display:flex;gap:10px;flex-wrap:wrap}.yes,.no{border:0;padding:11px 14px;border-radius:12px;font-weight:800;cursor:pointer;color:white}.yes{background:#128442}.no{background:#cf2938}.counter{margin-top:12px;background:#eaf2ff;border-radius:10px;padding:10px;text-align:center;font-weight:750;color:#16468e}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:16px 0}.shortcut{padding:16px 10px;text-align:center;color:white;border-radius:14px;font-weight:800;min-height:95px}.shortcut div{font-size:1.7rem}.shortcut small{display:block;font-weight:600;margin-top:5px}.c1{background:#1263d5}.c2{background:#149849}.c3{background:#8028cb}.c4{background:#ef8515}.c5{background:#087f88}.c6{background:#d81e64}
+.sections{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.section-title{margin:0 0 12px;color:#12376e}.list{display:grid;gap:8px}.list button,.list a{background:#f3f7ff;border:1px solid #e1eafa;padding:10px;border-radius:10px;text-align:left;text-decoration:none;color:#183253;cursor:pointer;font-weight:650}
+.notice{padding:9px 0;border-bottom:1px solid #edf1f6}.notice:last-child{border:0}.batch{display:flex;justify-content:space-between;gap:6px;align-items:center;background:#f2f7ff;padding:10px;border-radius:10px;margin-bottom:8px;font-size:.9rem}.badge{background:#dbe8ff;color:#13468d;border-radius:20px;padding:4px 8px;font-size:.75rem;font-weight:800}
+footer{text-align:center;padding:22px;background:#061a3b;color:#dce8ff;margin-top:18px}
+.modal{display:none;position:fixed;inset:0;background:#06152dcc;align-items:center;justify-content:center;padding:16px;z-index:10}.modal.open{display:flex}.modalbox{background:white;border-radius:18px;padding:22px;width:min(420px,100%)}.modalbox h2{margin-top:0}.modalbox input,.modalbox select{width:100%;padding:12px;border:1px solid #c9d7e9;border-radius:10px;margin:8px 0;font:inherit}.modalbox .cta{width:100%}.close{float:right;background:transparent;border:0;font-size:1.5rem;cursor:pointer}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:repeat(3,1fr)}.sections{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){main{padding:12px}.cards{grid-template-columns:repeat(2,1fr)}.sections{grid-template-columns:1fr}.hero-left{min-height:220px}header{padding:12px 4%}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">🎓 ITI Students <span>Zone</span></div><div class="topline">Learn • Practice • Grow | Skilled India • Bright Future</div></div><div><button class="cta" onclick="openModal('login')">Login</button> <button class="cta" onclick="openModal('register')">Register</button></div></header>
+<nav><a href="#home">🏠 Home</a><a href="#trades">Trades</a><a href="#notes">Study Notes</a><a href="#test">Online Test</a><a href="#batch">Batch</a><a href="#attendance">Kal Main Aa Raha Hu</a><a href="#jobs">Jobs</a><a href="#updates">Updates</a></nav>
+<main id="home">
+<section class="hero">
+<div class="panel hero-left"><h1>ITI Students <span>Zone</span></h1><h2>Your Complete ITI Learning Platform</h2><p>Trade-wise Notes • Online MCQ • Batch Updates • Jobs & Apprenticeship</p><div>🔧 Skill Badhao — Career Banao!</div><a class="cta" href="#trades">Start Learning →</a></div>
+<div class="panel clock"><div class="live">● LIVE CLOCK</div><div class="date" id="date">Loading date…</div><div class="time" id="time">--:--:--</div><div>India Standard Time (IST)</div></div>
+</section>
+<section class="panel attendance" id="attendance" style="margin-top:16px"><h2>📅 Kal Main Aa Raha Hu</h2><div class="sub">कल ITI आने की अपनी पुष्टि करें — बैच चुनें:</div><select id="batchChoice" style="padding:10px;border-radius:9px;border:1px solid #cad8e8;margin-bottom:10px"><option>Batch 2026–27</option><option>Batch 2025–26</option><option>Batch 2027–28</option><option>Other / अपना बैच</option></select><div class="buttons"><button class="yes" onclick="setAttendance('yes')">✓ हाँ, कल मैं आ रहा हूँ</button><button class="no" onclick="setAttendance('no')">✕ कल नहीं आऊँगा</button></div><div class="counter" id="attendanceCount">आपकी पसंद इस डिवाइस पर सेव होगी (डेमो)</div></section>
+<div class="cards">
+<div class="shortcut c1" onclick="go('trades')"><div>🔧</div>Trade Section<small>All Trades</small></div>
+<div class="shortcut c2" onclick="go('notes')"><div>📚</div>Study Notes<small>Read Notes</small></div>
+<div class="shortcut c3" onclick="go('test')"><div>📝</div>Online Test<small>MCQ Practice</small></div>
+<div class="shortcut c4" onclick="go('batch')"><div>👥</div>Batch Section<small>View Batches</small></div>
+<div class="shortcut c5" onclick="go('jobs')"><div>💼</div>Jobs & Apprenticeship<small>Find Opportunities</small></div>
+<div class="shortcut c6" onclick="go('updates')"><div>🔔</div>Coming Soon<small>Updates</small></div>
+</div>
+<section class="sections">
+<div class="panel" id="trades"><h2 class="section-title">🛠 Our Trades</h2><div class="list"><button onclick="trade('Diesel Mechanic')">Diesel Mechanic</button><button onclick="trade('Electrician')">Electrician</button><button onclick="trade('Fitter')">Fitter</button><button onclick="trade('COPA')">COPA</button><button onclick="trade('Welder')">Welder</button><button onclick="trade('Turner')">Turner</button></div></div>
+<div class="panel" id="updates"><h2 class="section-title">📢 Latest Updates</h2><div class="notice">ITI exam notices and syllabus updates <span class="badge">Demo</span></div><div class="notice">Apprenticeship and job alerts</div><div class="notice">New study materials coming soon</div></div>
+<div class="panel" id="batch"><h2 class="section-title">👥 Batch Section</h2><div class="batch"><span>Batch 2026–27</span><span class="badge">Join Soon</span></div><div class="batch"><span>Batch 2025–26</span><span class="badge">Join Soon</span></div><div class="batch"><span>Batch 2027–28</span><span class="badge">Upcoming</span></div><p class="topline">Login/Register के बाद batch features जोड़े जा सकते हैं।</p></div>
+</section>
+<section class="sections" style="margin-top:14px">
+<div class="panel" id="notes"><h2 class="section-title">📖 Study Notes</h2><p>Trade-wise Hindi notes, NIMI pattern, syllabus and revision material.</p><button class="cta" onclick="alert('Notes section अभी demo है। इसमें जल्द trade-wise notes जोड़े जाएंगे।')">Open Notes</button></div>
+<div class="panel" id="test"><h2 class="section-title">🧠 Online Test</h2><p>Practice MCQ, mock tests and check your score.</p><button class="cta" onclick="alert('Online Test अभी demo है। टेस्ट सीरीज जल्द जोड़ी जाएगी।')">Start Practice</button></div>
+<div class="panel" id="jobs"><h2 class="section-title">💼 Jobs & Apprenticeship</h2><p>ITI के बाद job और apprenticeship जानकारी का सेक्शन।</p><button class="cta" onclick="alert('Jobs section अभी demo है। verified opportunities जल्द जोड़ी जाएंगी।')">Explore Jobs</button></div>
+</section>
+</main>
+<footer>ITI Students Zone • Empowering ITI Students • Skill Development • Better Career • Bright Future 🇮🇳</footer>
+<div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><h2 id="modalTitle">Login</h2><input type="hidden" id="authMode" value="login"><input id="studentName" placeholder="Student Name"><input id="studentEmail" type="email" placeholder="Email"><input id="studentPassword" type="password" placeholder="Password"><select id="studentTrade"><option>Diesel Mechanic</option><option>Electrician</option><option>Fitter</option><option>COPA</option><option>Welder</option><option>Turner</option></select><button class="cta" onclick="authAction()">Login / Create Account</button><p class="topline">Firebase connect karne ke baad secure account au<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, onSnapshot, collection, query, where } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+// 1) Paste your Firebase Web App config here (Firebase Console > Project settings > Your apps).
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_PROJECT_ID.appspot.com",
+  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
+  appId: "PASTE_APP_ID"
+};
+const firebaseReady = !Object.values(firebaseConfig).some(v => String(v).includes("PASTE_"));
+let app, auth, db, currentUser;
+if(firebaseReady){app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);}
+function updateClock(){const now=new Date();const opts={timeZone:'Asia/Kolkata'};document.getElementById('date').textContent=now.toLocaleDateString('en-IN',{...opts,weekday:'long',day:'numeric',month:'long',year:'numeric'});document.getElementById('time').textContent=now.toLocaleTimeString('en-IN',{...opts,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});}
+updateClock();setInterval(updateClock,1000);
+function tomorrowKey(){const now=new Date();const local=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));local.setDate(local.getDate()+1);return `${local.getFullYear()}-${String(local.getMonth()+1).padStart(2,'0')}-${String(local.getDate()).padStart(2,'0')}`;}
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+window.go=go;
+window.trade=function(name){alert(name+' trade section: content coming soon.');};
+window.openModal=function(mode){document.getElementById('modal').classList.add('open');document.getElementById('modalTitle').textContent=mode==='login'?'Student Login':'Student Register';document.getElementById('authMode').value=mode;};
+window.closeModal=function(){document.getElementById('modal').classList.remove('open');};
+window.authAction=async function(){
+ if(!firebaseReady){alert('Firebase config abhi set nahi hua. Config paste karke upload karna hoga.');return;}
+ const mode=document.getElementById('authMode').value, email=document.getElementById('studentEmail').value.trim(), password=document.getElementById('studentPassword').value, name=document.getElementById('studentName').value.trim(), trade=document.getElementById('studentTrade').value;
+ if(!email||!password||(mode==='register'&&!name)){alert('Name (register), email aur password bharen.');return;}
+ try{
+  let cred=mode==='register'?await createUserWithEmailAndPassword(auth,email,password):await signInWithEmailAndPassword(auth,email,password);
+  await setDoc(doc(db,'students',cred.user.uid),{name:name||cred.user.email, email:cred.user.email, trade, updatedAt:new Date().toISOString()},{merge:true});
+  alert('Login successful!');closeModal();
+ }catch(e){alert('Login error: '+e.message);}
+};
+if(firebaseReady) onAuthStateChanged(auth,user=>{
+ currentUser=user;
+ const msg=document.getElementById('attendanceCount');
+ if(!firebaseReady){msg.textContent='Firebase setup pending: live shared attendance is not connected yet.';return;}
+ if(!user){msg.textContent='Kal attendance mark karne ke liye login karein.';return;}
+ const batch=document.getElementById('batchChoice').value;
+ const date=tomorrowKey();
+ const q=query(collection(db,'attendance'),where('date','==',date),where('batch','==',batch));
+ onSnapshot(q,snap=>{const yes=snap.docs.filter(d=>d.data().choice==='yes').length;const no=snap.docs.filter(d=>d.data().choice==='no').length;msg.textContent=`📊 ${date} • ${batch}: ${yes} आने वाले · ${no} नहीं आने वाले (Live)`;},err=>{msg.textContent='Attendance load error: '+err.message;});
+});
+else document.getElementById('attendanceCount').textContent='Firebase setup pending: shared live attendance connect karna baaki hai.';
+window.setAttendance=async function(choice){
+ if(!firebaseReady){alert('Firebase config abhi connect nahi hai.');return;}
+ if(!currentUser){alert('Attendance mark karne se pehle Login karein.');openModal('login');return;}
+ const batch=document.getElementById('batchChoice').value, date=tomorrowKey();
+ try{await setDoc(doc(db,'attendance',currentUser.uid),{uid:currentUser.uid,choice,batch,date,updatedAt:new Date().toISOString()});document.getElementById('attendanceCount').textContent='आपका जवाब लाइव सेव हो गया!';}
+ catch(e){alert('Attendance save error: '+e.message);}
+};
+</script> browser में save हुई।');closeModal();}
+</script>
+</body>
+</html>
